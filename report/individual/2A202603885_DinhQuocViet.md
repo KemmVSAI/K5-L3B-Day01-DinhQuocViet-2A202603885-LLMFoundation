@@ -10,9 +10,9 @@
 
 | Tệp | Có? |
 | --- | --- |
-| [`day01_lab.ipynb`](day01_lab.ipynb) — notebook đã chạy, còn output | ☐ |
-| [`lab1_report.json`](lab1_report.json) — do ô "Báo cáo cuối" sinh ra | ☐ |
-| [`hand_calc.jpg`](hand_calc.jpg) — ảnh tính tay có các bước | ☐ |
+| [`day01_lab.ipynb`](day01_lab.ipynb) — notebook đã chạy, còn output | không còn |
+| [`lab1_report.json`](lab1_report.json) — do ô "Báo cáo cuối" sinh ra | có |
+| [`hand_calc.jpg`](hand_calc.jpg) — ảnh tính tay có các bước | có |
 
 ## 2. Kết quả chính
 
@@ -20,9 +20,9 @@
 Model	F1 test	F1 SUB 40	p95 (ms/tin)	USD/1k tin
 BoW + LogReg	0.845	0.750	0.339	0
 BoW + MLP	0.921	0.857	1.917	0
-Emb + kNN	0.866	0.889	61.669	0
-Emb + LogReg	0.939	0.857	37.518	0
-Emb + MLP head	0.944	0.889	38.371	0
+MiniLM + kNN	0.866	0.889	61.669	0
+MiniLM + LogReg	0.939	0.857	37.518	0
+MiniLM + MLP head	0.944	0.889	38.371	0
 LLM nhỏ zero-shot	0.919	0.919	1653.841	0.006
 LLM lớn zero-shot	0.974	0.974	1665.246	0.065
 LLM nhỏ few-shot	0.947	0.947	1597.848	0.015
@@ -30,6 +30,7 @@ LLM nhỏ few-shot	0.947	0.947	1597.848	0.015
 ## 3. Dự đoán và thực tế
 
 *Chọn 3 dự đoán `predict(...)` lệch nhiều nhất so với kết quả. Mỗi cái: bạn đoán gì, ra gì, vì sao lệch.*
+
 
 ## 4. Phân tích 50 case khó
 
@@ -46,6 +47,15 @@ Nhóm khó nhất:
 ## 5. Thử thách cá nhân
 
 *Đề theo SEED của bạn, cách làm, kết quả, giải thích.*
+Em thay đổi số nơ-ron lớp ẩn của MLP thành 4 và 512.
+
+| Chỉ số | 4 nơ-ron | 512 nơ-ron |
+|---|---:|---:|
+| Số tham số | 8.009 | 1.025.025 |
+| F1 test | 0.9205 | 0.9153 |
+| Thời gian train | 28.64 giây | 55.04 giây |
+
+Kết quả cho thấy MLP 4 nơ-ron đạt F1 cao hơn và huấn luyện nhanh hơn. Em nhận ra mô hình lớn hơn không phải lúc nào cũng tốt hơn. Mạng nhỏ phù hợp khi dữ liệu không quá phức tạp và cần tiết kiệm tài nguyên.
 
 ## 6. Phương án cho sản phẩm thật
 
